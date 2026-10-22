@@ -17,7 +17,7 @@ Roda **depois** da cerimônia, sobre o deck atualizado. O deck é a fonte da ver
 
 ## Entrada
 
-Markdown produzido por `/extrair-demanda` a partir do CPA. Se `$ARGUMENTS` estiver vazio, liste os arquivos em `docs/` e pergunte qual avaliar. Nunca invente conteúdo.
+Markdown produzido por `/extrair-demanda` a partir do CPA. Se `$ARGUMENTS` estiver vazio, liste as pastas `02-frentes/kairos/docs/<ID>/` (`<ID>` = código do projeto, padrão `NN.NNNN`) que tenham `bruto.md` e pergunte qual avaliar. Nunca invente conteúdo.
 
 ## Localização das seções — âncoras semânticas
 
@@ -74,7 +74,7 @@ O template traz texto de exemplo que **não pertence à demanda**. Descartar sem
 - Requisito marcado como atendido por outro projeto (é dependência, não requisito deste)
 - Área vizinha listada na seção `05` sem requisito correspondente, ou o inverso
 - Classificação MVP/Backlog sem critério registrado
-- Requisito que cita sistema ausente de `contexto/mapa-sistemas.md`
+- Requisito que cita sistema ausente de `02-frentes/kairos/contexto/mapa-sistemas.md`
 - Requisito com esteira operacional (ex.: SAP) — declarar que não gera esforço de desenvolvimento
 - Volumetria, janela de processamento ou NFR ausentes quando o requisito os pressupõe
 - Campos de identificação não preenchidos (esteira de entrada, requisito para BI, driver principal)
@@ -92,13 +92,13 @@ Procure **dependências entre projetos** (padrão `NN.NNNN`) em qualquer lugar d
 
 ## Contexto a consultar
 
-Leia antes de avaliar, quando existirem: `contexto/mapa-sistemas.md`, `contexto/criterios-nfr.md`, `contexto/glossario-negocio.md`, `contexto/racional-estimativa.md`. Se estiverem vazios, prossiga e **declare no rodapé** que a avaliação foi feita sem base de contexto.
+Leia antes de avaliar, quando existirem: `02-frentes/kairos/contexto/mapa-sistemas.md`, `02-frentes/kairos/contexto/criterios-nfr.md`, `02-frentes/kairos/contexto/glossario-negocio.md`, `02-frentes/kairos/contexto/racional-estimativa.md`. Se estiverem vazios, prossiga e **declare no rodapé** que a avaliação foi feita sem base de contexto.
 
-Busque também em `docs/` outras demandas que citem os mesmos sistemas ou projetos relacionados.
+Busque também nas demais pastas de `02-frentes/kairos/docs/` outras demandas que citem os mesmos sistemas ou projetos relacionados.
 
 ## Formato de saída
 
-Grave em `docs/<ID>/prontidao.md`. Deve caber em **uma tela** — se não couber, corte pontos de atenção, nunca bloqueadores.
+Grave em `02-frentes/kairos/docs/<ID>/prontidao.md`, na mesma pasta da entrada. Deve caber em **uma tela** — se não couber, corte pontos de atenção, nunca bloqueadores.
 
 ```markdown
 # Prontidão para Desenho de Solução — <ID> <nome>

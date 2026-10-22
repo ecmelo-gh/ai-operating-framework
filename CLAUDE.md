@@ -29,7 +29,9 @@ Tudo o que é específico do Kairós fica em `02-frentes/kairos/`.
 │       ├── contexto/      # Contexto e escopo da frente
 │       ├── roadmap/       # Roadmap da frente
 │       ├── historico/     # Decisões e evolução
-│       └── docs/          # Demandas reais de cliente — NÃO versionada (.gitignore)
+│       ├── templates/     # Templates de artefatos da frente
+│       ├── CLAUDE-kairos.md  # Referência da frente (origem: system-development)
+│       └── docs/<ID>/     # Uma pasta por demanda (<ID> = NN.NNNN) — NÃO versionada
 ├── 03-artefatos/
 │   ├── apresentacoes/
 │   ├── diagramas/
@@ -42,6 +44,12 @@ Tudo o que é específico do Kairós fica em `02-frentes/kairos/`.
 
 1. **Skills:** toda skill nova é criada pela meta-skill `kairos-skill`, seguindo a
    `DOUTRINA.md`. Não crie skills manualmente nem fora desse fluxo.
+
+   As skills extrair-demanda e analise-demanda são anteriores à DOUTRINA.md.
+   Foram calibradas contra caso real (demanda 25.0167) em três rodadas, mas ainda
+   não passaram pela kairos-skill nem têm evals. Serão revalidadas quando a
+   DOUTRINA.md e a kairos-skill existirem. Até lá, não servem de modelo para
+   skills novas.
 2. **Dados de cliente:** `02-frentes/kairos/docs/` contém demandas reais de cliente.
    Nunca versione, copie para outras pastas ou cite seu conteúdo em artefatos
    versionados.

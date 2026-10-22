@@ -1,6 +1,6 @@
 ---
 name: extrair-demanda
-description: Converte a demanda recebida em .pptx, .xlsx, .docx ou .pdf para markdown normalizado em docs/, preservando o texto original sem interpretar. Use como primeiro passo, antes de /analise-demanda, sempre que a demanda chegar em formato Office.
+description: Converte a demanda recebida em .pptx, .xlsx, .docx ou .pdf para markdown normalizado em 02-frentes/kairos/docs/<ID>/, preservando o texto original sem interpretar. Use como primeiro passo, antes de /analise-demanda, sempre que a demanda chegar em formato Office.
 argument-hint: [caminho do arquivo original]
 allowed-tools: Bash, Read, Write, Glob
 ---
@@ -13,13 +13,17 @@ Transformar o arquivo original da área usuária em um **artefato textual fiel**
 
 Esta skill **não interpreta, não resume, não corrige e não organiza**. Ela transporta conteúdo de um formato para outro. Qualquer melhoria de redação aqui destrói o objeto de análise da etapa seguinte: a ambiguidade do texto original é justamente o que precisa ser detectado depois.
 
+## Pasta da demanda
+
+Cada demanda tem uma pasta própria, `02-frentes/kairos/docs/<ID>/`, onde `<ID>` é o código do projeto no padrão `NN.NNNN`. O arquivo original e todos os derivados ficam nela. Se o `<ID>` não puder ser identificado pelo caminho ou pelo arquivo, pergunte; não invente.
+
 ## Procedimento
 
-1. **Verificar o arquivo de entrada.** Se `$ARGUMENTS` estiver vazio, liste os arquivos disponíveis em `docs/entrada/` e pergunte qual processar. Não invente conteúdo.
+1. **Verificar o arquivo de entrada.** Se `$ARGUMENTS` estiver vazio, liste as pastas `02-frentes/kairos/docs/<ID>/` e os arquivos originais dentro delas, e pergunte qual processar. Não invente conteúdo.
 
 2. **Converter.** Para `.pptx`, o método principal é **`python-pptx`**, que dá controle sobre notas, tabelas e formas agrupadas. Para `.xlsx`, use **`openpyxl`**, percorrendo **todas as abas, inclusive as ocultas**. `markitdown` serve como alternativa quando as bibliotecas não estiverem disponíveis. Informe ao usuário qual caminho foi usado.
 
-   Saída em `docs/<ID>-bruto.md`, gravada em UTF-8.
+   Saída em `02-frentes/kairos/docs/<ID>/bruto.md`, gravada em UTF-8.
 
 3. **Recuperar o que a conversão costuma perder.** Esta etapa é obrigatória e é onde está o valor real da skill:
 
@@ -45,7 +49,7 @@ Esta skill **não interpreta, não resume, não corrige e não organiza**. Ela t
    ```
    Este marcador é obrigatório sempre que o slide tiver formas agrupadas ou livres em quantidade relevante. Texto de tabela e de caixa de texto isolada não precisa dele.
 
-6. **Gravar** em `docs/<ID>-bruto.md` no formato de saída abaixo.
+6. **Gravar** em `02-frentes/kairos/docs/<ID>/bruto.md` no formato de saída abaixo.
 
 7. **Reportar** ao usuário: origem, quantidade de slides/abas processados, o que foi recuperado além do texto principal e o que não pôde ser extraído.
 
@@ -81,5 +85,5 @@ Preserve a ordem e a segmentação do original. Cada slide ou aba vira uma seç�
 - **Transcrição, não redação.** Erro de português, frase incompleta, bullet solto e contradição interna devem ser preservados como estão.
 - **Não unifique** informação repetida em slides diferentes. Repetição com variação é sinal de ambiguidade e é dado relevante para a análise.
 - **Não classifique nem priorize** o conteúdo. Isso é trabalho de `/analise-demanda`.
-- **Não produza análise.** Ao terminar, informe o caminho do arquivo e sugira executar `/analise-demanda docs/<ID>-bruto.md`. Não emende as duas etapas.
+- **Não produza análise.** Ao terminar, informe o caminho do arquivo e sugira executar `/analise-demanda 02-frentes/kairos/docs/<ID>/bruto.md`. Não emende as duas etapas.
 - **Integridade PARCIAL é resultado válido.** Declarar o que não foi extraído vale mais que uma saída aparentemente completa.

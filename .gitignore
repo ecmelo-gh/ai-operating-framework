@@ -1,1 +1,2 @@
-02-frentes/kairos/docs/
+02-frentes/kairos/docs/*
+!02-frentes/kairos/docs/.gitkeep
